@@ -1,0 +1,219 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { min-height: 100vh; font-family: 'DM Sans', 'Helvetica Neue', sans-serif; }
+::placeholder { color: rgba(255,255,255,0.4); }
+
+.app-root {
+  min-height: 100vh;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nav-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.burger {
+  width: 20px;
+  height: 2px;
+  display: block;
+  background: currentColor;
+  position: relative;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.burger::before,
+.burger::after {
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  position: absolute;
+  left: 0;
+  transition: transform 0.25s ease;
+}
+
+.burger::before { top: -6px; }
+.burger::after { top: 6px; }
+
+.burger.open { background: transparent; }
+.burger.open::before { transform: translateY(6px) rotate(45deg); }
+.burger.open::after { transform: translateY(-6px) rotate(-45deg); }
+
+.nav-actions.open {
+  display: flex !important;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 48px;
+  width: 100%;
+}
+
+.hero-card {
+  display: grid !important;
+  grid-template-columns: 1fr 380px !important;
+  gap: 48px !important;
+  align-items: center !important;
+}
+
+.services-section,
+.projects-section,
+.contact-section {
+  padding: 96px 64px;
+}
+
+.service-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+}
+
+.project-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 32px !important;
+}
+
+.contact-inner {
+  max-width: 680px !important;
+  margin: 0 auto !important;
+}
+
+.site-footer {
+  width: 100%;
+}
+
+@media (max-width: 1140px) {
+  .top-nav {
+    padding: 0 24px !important;
+  }
+  .hero-inner {
+    padding: 40px 32px !important;
+  }
+  .hero-card {
+    gap: 32px !important;
+  }
+  .services-section,
+  .projects-section,
+  .contact-section {
+    padding: 72px 32px !important;
+  }
+  .site-footer {
+    padding: 32px 24px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    padding: 32px 24px !important;
+  }
+  .hero-card {
+    grid-template-columns: 1fr !important;
+    padding: 36px 24px !important;
+  }
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .project-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .top-nav {
+    justify-content: center;
+  }
+  .nav-actions {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .top-nav {
+    padding: 0 16px !important;
+    position: sticky;
+  }
+  .mobile-menu-toggle {
+    display: flex !important;
+    margin-bottom: 12px;
+  }
+  .nav-actions {
+    display: none !important;
+    width: 100%;
+    flex-direction: column;
+    gap: 12px !important;
+    padding: 16px 0;
+    margin-top: 12px;
+  }
+  .nav-actions.open {
+    display: flex !important;
+  }
+  .nav-actions > button,
+  .nav-actions > a {
+    width: 100%;
+    justify-content: center;
+  }
+  .top-nav {
+    justify-content: space-between;
+  }
+  .hero-inner {
+    padding: 28px 16px !important;
+  }
+  .hero-card {
+    padding: 28px 16px !important;
+    align-items: start !important;
+  }
+  .services-section,
+  .projects-section,
+  .contact-section {
+    padding: 56px 18px !important;
+  }
+  .site-footer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    padding: 24px 18px !important;
+  }
+  .site-footer > div:last-child {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero-card > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .top-nav > div:first-child {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
