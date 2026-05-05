@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 function App() {
   const [dark, setDark] = useState(false);
@@ -6,6 +7,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formSent, setFormSent] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
+  const [formError, setFormError] = useState(null);
 
   const D1_COLORS = {
     bg: '#f8f9fa', bgCard: '#ffffff', bgSection: '#f1f3f4',
@@ -52,6 +55,34 @@ function App() {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
     setActiveNav(id);
     setMenuOpen(false);
+  };
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setFormLoading(true);
+    setFormError(null);
+
+    try {
+      await emailjs.send(
+        'service_mhmcf7b', // Service ID
+        'template_2hvn5mc', // Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Benjamin',
+        },
+        '3eV1X49wbJMBPL8tE' // Public Key
+      );
+
+      setFormSent(true);
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+      setFormError('Erreur lors de l\'envoi. Veuillez réessayer.');
+    } finally {
+      setFormLoading(false);
+    }
   };
 
   const GitHubIcon = () => (
@@ -281,7 +312,12 @@ function App() {
             </div>
           ) : (
             <div style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderRadius: 24, padding: '48px 48px', border: '1px solid rgba(255,255,255,0.25)', boxShadow: '0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3)' }}>
-              <form onSubmit={e => { e.preventDefault(); setFormSent(true); }} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              {formError && (
+                <div style={{ background: 'rgba(239,68,68,0.2)', border: '1px solid rgba(239,68,68,0.4)', borderRadius: 12, padding: '12px 16px', marginBottom: 20, color: '#ef4444', fontSize: 14 }}>
+                  {formError}
+                </div>
+              )}
+              <form onSubmit={sendEmail} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                 {[['name', 'Votre nom', 'text'], ['email', 'Votre email', 'email']].map(([field, placeholder, type]) => (
                   <div key={field}>
                     <label style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.8)', display: 'block', marginBottom: 8 }}>{placeholder}</label>
@@ -300,10 +336,10 @@ function App() {
                     onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.2)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }}
                   ></textarea>
                 </div>
-                <button type="submit" style={{ background: '#fff', color: '#1a6cf5', border: 'none', padding: '14px 32px', borderRadius: 12, fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(0,0,0,0.25)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)'; }}>
-                  Envoyer le message →
+                <button type="submit" disabled={formLoading} style={{ background: '#fff', color: '#1a6cf5', border: 'none', padding: '14px 32px', borderRadius: 12, fontSize: 15, fontWeight: 700, cursor: formLoading ? 'not-allowed' : 'pointer', fontFamily: 'inherit', transition: 'all 0.2s', boxShadow: '0 4px 20px rgba(0,0,0,0.2)', opacity: formLoading ? 0.7 : 1 }}
+                  onMouseEnter={e => { if (!formLoading) { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(0,0,0,0.25)'; } }}
+                  onMouseLeave={e => { if (!formLoading) { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)'; } }}>
+                  {formLoading ? 'Envoi en cours...' : 'Envoyer le message →'}
                 </button>
               </form>
             </div>
