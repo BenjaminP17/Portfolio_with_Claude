@@ -37,7 +37,7 @@ function App() {
   const projects = [
     { tag: 'E-commerce', title: 'Maison Lumière', desc: 'Boutique en ligne de luminaires design. +40% de conversions.', tech: ['Next.js', 'Stripe', 'Sanity'] },
     { tag: 'Site Vitrine', title: 'Cabinet Morel', desc: "Site cabinet d'avocats, sobre et professionnel.", tech: ['React', 'Tailwind', 'Framer'] },
-    { tag: 'Web App', title: 'PlannerPro', desc: 'Application de gestion de projets pour équipes créatives.', tech: ['Vue.js', 'Node', 'PostgreSQL'] },
+    { tag: 'Web App', title: 'Générateur de devis', desc: 'Une application qui permet de générer des devis en ligne.', tech: ['HTML', 'CSS', 'JavaScript'], img: '/images/gen_devis_img.webp', url: 'http://lab.benjaminpelissier.com/devis_generator_light/' },
     { tag: 'SEO', title: 'BioMarché Local', desc: 'Refonte SEO complète. ×3 visiteurs organiques en 6 mois.', tech: ['WordPress', 'GSC', 'Schema.org'] },
   ];
 
@@ -263,16 +263,24 @@ function App() {
               <div key={i} style={{ background: c.bgCard, borderRadius: 16, overflow: 'hidden', border: `1px solid ${c.border}`, transition: 'all 0.25s', cursor: 'pointer' }}
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = dark ? '0 16px 48px rgba(0,0,0,0.4)' : '0 16px 48px rgba(0,0,0,0.08)'; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}>
-                <div style={{ height: 180, background: dark ? 'linear-gradient(135deg, rgba(138,180,248,0.08), rgba(138,180,248,0.03))' : 'linear-gradient(135deg, rgba(26,115,232,0.06), rgba(26,115,232,0.02))', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: `1px solid ${c.border}` }}>
-                  <div style={{ fontFamily: 'monospace', fontSize: 12, color: c.textMuted, textAlign: 'center' }}>
-                    <div style={{ color: c.accent, marginBottom: 4 }}>— capture d'écran —</div>
-                    <div>{p.title}</div>
-                  </div>
+                <div style={{ height: 180, background: dark ? 'linear-gradient(135deg, rgba(138,180,248,0.08), rgba(138,180,248,0.03))' : 'linear-gradient(135deg, rgba(26,115,232,0.06), rgba(26,115,232,0.02))', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: `1px solid ${c.border}`, overflow: 'hidden' }}>
+                  {p.img ? (
+                    <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <div style={{ fontFamily: 'monospace', fontSize: 12, color: c.textMuted, textAlign: 'center' }}>
+                      <div style={{ color: c.accent, marginBottom: 4 }}>— capture d'écran —</div>
+                      <div>{p.title}</div>
+                    </div>
+                  )}
                 </div>
                 <div style={{ padding: 28 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
                     <span style={{ fontSize: 12, fontWeight: 600, color: tagColors[p.tag] || c.accent, background: `${tagColors[p.tag] || c.accent}18`, padding: '4px 12px', borderRadius: 12 }}>{p.tag}</span>
-                    <span style={{ fontSize: 13, color: c.accent, fontWeight: 500 }}>Voir →</span>
+                    {p.url ? (
+                      <a href={p.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: c.accent, fontWeight: 500, textDecoration: 'none' }}>Voir →</a>
+                    ) : (
+                      <span style={{ fontSize: 13, color: c.textMuted, fontWeight: 500, opacity: 0.4 }}>Voir →</span>
+                    )}
                   </div>
                   <h3 style={{ fontSize: 22, fontWeight: 700, margin: '0 0 8px', color: c.text, letterSpacing: '-0.5px' }}>{p.title}</h3>
                   <p style={{ fontSize: 14, color: c.textMuted, lineHeight: 1.5, margin: '0 0 16px' }}>{p.desc}</p>
