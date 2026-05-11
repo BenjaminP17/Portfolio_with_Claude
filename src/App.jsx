@@ -36,7 +36,7 @@ function App() {
 
   const projects = [
     { tag: 'E-commerce', title: 'Maison Lumière', desc: 'Boutique en ligne de luminaires design. +40% de conversions.', tech: ['Next.js', 'Stripe', 'Sanity'] },
-    { tag: 'Site Vitrine', title: 'Cabinet Morel', desc: "Site cabinet d'avocats, sobre et professionnel.", tech: ['React', 'Tailwind', 'Framer'] },
+    { tag: 'Site Vitrine', title: "L'Interstice", desc: "Site vitrine pour une agence d'architecture d'intérieur, élégant et immersif.", tech: ['HTML', 'CSS', 'JavaScript'], img: '/images/interstice_img.webp', url: 'http://lab.benjaminpelissier.com/Interstice-site/' },
     { tag: 'Web App', title: 'Générateur de devis', desc: 'Une application qui permet de générer des devis en ligne.', tech: ['HTML', 'CSS', 'JavaScript'], img: '/images/gen_devis_img.webp', url: 'http://lab.benjaminpelissier.com/devis_generator_light/' },
     { tag: 'SEO', title: 'BioMarché Local', desc: 'Refonte SEO complète. ×3 visiteurs organiques en 6 mois.', tech: ['WordPress', 'GSC', 'Schema.org'] },
   ];
