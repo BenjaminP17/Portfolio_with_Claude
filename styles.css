@@ -213,6 +213,33 @@ body { min-height: 100vh; font-family: 'DM Sans', 'Helvetica Neue', sans-serif; 
   }
 }
 
+.hero-title   { font-size: 52px; }
+.section-title { font-size: 48px; }
+.hero-buttons  { display: flex; }
+.modal-content { padding: 48px 52px; max-height: 80vh; overflow-y: auto; }
+.contact-form-card { padding: 48px; }
+
+@media (max-width: 900px) {
+  .hero-title    { font-size: 40px; }
+  .section-title { font-size: 38px; }
+}
+
+@media (max-width: 640px) {
+  .hero-title    { font-size: 30px; }
+  .section-title { font-size: 28px; }
+  .hero-buttons  { flex-wrap: wrap !important; }
+  .hero-buttons > button { flex: 1 !important; min-width: 130px !important; }
+  .modal-content { padding: 28px 20px !important; }
+  .contact-form-card { padding: 28px 20px !important; }
+}
+
+@media (max-width: 400px) {
+  .hero-title    { font-size: 26px; }
+  .section-title { font-size: 24px; }
+  .hero-buttons  { flex-direction: column !important; }
+  .hero-buttons > button { width: 100% !important; }
+}
+
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }

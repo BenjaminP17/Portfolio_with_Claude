@@ -9,6 +9,7 @@ function App() {
   const [formSent, setFormSent] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState(null);
+  const [legalOpen, setLegalOpen] = useState(false);
 
   const D1_COLORS = {
     bg: '#f8f9fa', bgCard: '#ffffff', bgSection: '#f1f3f4',
@@ -178,13 +179,13 @@ function App() {
                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80', display: 'inline-block', boxShadow: '0 0 8px #4ade80' }}></span>
                 Disponible pour de nouveaux projets
               </div>
-              <h1 style={{ fontSize: 52, fontWeight: 700, lineHeight: 1.1, margin: '0 0 20px', letterSpacing: '-2px', color: '#ffffff' }}>
+              <h1 className="hero-title" style={{ fontWeight: 700, lineHeight: 1.1, margin: '0 0 20px', letterSpacing: '-2px', color: '#ffffff' }}>
                 Je transforme vos <span style={{ color: '#bfdbfe' }}>idées</span> en expériences numériques
               </h1>
               <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.75)', lineHeight: 1.65, margin: '0 0 36px' }}>
                 Développeur &amp; éditeur de sites web basé en France. Je conçois des sites et applications qui allient design soigné et performance technique.
               </p>
-              <div style={{ display: 'flex', gap: 14, alignItems: 'center', marginBottom: 44 }}>
+              <div className="hero-buttons" style={{ display: 'flex', gap: 14, alignItems: 'center', marginBottom: 44 }}>
                 <button onClick={() => scrollTo('projects')} style={{ background: '#fff', color: '#1a6cf5', border: 'none', padding: '13px 28px', borderRadius: 24, fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', boxShadow: '0 4px 20px rgba(0,0,0,0.2)', transition: 'all 0.2s' }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(0,0,0,0.25)'; }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)'; }}>
@@ -235,7 +236,7 @@ function App() {
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ marginBottom: 64 }}>
             <div style={{ fontSize: 13, fontWeight: 600, color: c.accent, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 16 }}>Services</div>
-            <h2 style={{ fontSize: 48, fontWeight: 700, letterSpacing: '-1.5px', margin: 0, color: c.text }}>Ce que je fais</h2>
+            <h2 className="section-title" style={{ fontWeight: 700, letterSpacing: '-1.5px', margin: 0, color: c.text }}>Ce que je fais</h2>
           </div>
           <div className="service-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
             {services.map((s, i) => (
@@ -256,7 +257,7 @@ function App() {
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ marginBottom: 64 }}>
             <div style={{ fontSize: 13, fontWeight: 600, color: c.accent, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 16 }}>Projets</div>
-            <h2 style={{ fontSize: 48, fontWeight: 700, letterSpacing: '-1.5px', margin: 0, color: c.text }}>Réalisations récentes</h2>
+            <h2 className="section-title" style={{ fontWeight: 700, letterSpacing: '-1.5px', margin: 0, color: c.text }}>Réalisations récentes</h2>
           </div>
           <div className="project-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 32 }}>
             {projects.map((p, i) => (
@@ -309,7 +310,7 @@ function App() {
         <div className="contact-inner" style={{ position: 'relative', zIndex: 1, maxWidth: 680, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <div style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.7)', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 16 }}>Contact</div>
-            <h2 style={{ fontSize: 48, fontWeight: 700, letterSpacing: '-1.5px', margin: '0 0 16px', color: '#fff' }}>Parlons de votre projet</h2>
+            <h2 className="section-title" style={{ fontWeight: 700, letterSpacing: '-1.5px', margin: '0 0 16px', color: '#fff' }}>Parlons de votre projet</h2>
             <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.7)', lineHeight: 1.6, margin: 0 }}>Une idée ? Un projet ? Je suis disponible pour en discuter.</p>
           </div>
           {formSent ? (
@@ -319,7 +320,7 @@ function App() {
               <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: 15 }}>Je vous réponds sous 24h.</p>
             </div>
           ) : (
-            <div style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderRadius: 24, padding: '48px 48px', border: '1px solid rgba(255,255,255,0.25)', boxShadow: '0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3)' }}>
+            <div className="contact-form-card" style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderRadius: 24, border: '1px solid rgba(255,255,255,0.25)', boxShadow: '0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3)' }}>
               {formError && (
                 <div style={{ background: 'rgba(239,68,68,0.2)', border: '1px solid rgba(239,68,68,0.4)', borderRadius: 12, padding: '12px 16px', marginBottom: 20, color: '#ef4444', fontSize: 14 }}>
                   {formError}
@@ -355,9 +356,67 @@ function App() {
         </div>
       </section>
 
+      {/* ── MODAL MENTIONS LÉGALES ── */}
+      {legalOpen && (
+        <div onClick={() => setLegalOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <div onClick={e => e.stopPropagation()} className="modal-content" style={{ background: c.bgCard, borderRadius: 20, maxWidth: 620, width: '100%', border: `1px solid ${c.border}`, boxShadow: '0 24px 64px rgba(0,0,0,0.25)', position: 'relative' }}>
+            <button onClick={() => setLegalOpen(false)} style={{ position: 'absolute', top: 20, right: 20, background: dark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)', border: 'none', color: c.textMuted, width: 36, height: 36, borderRadius: '50%', cursor: 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
+            <h2 style={{ fontSize: 28, fontWeight: 700, margin: '0 0 32px', color: c.text, letterSpacing: '-0.5px' }}>Mentions légales</h2>
+
+            {[
+              {
+                title: 'Éditeur du site',
+                lines: [
+                  'Benjamin Pelissier',
+                  '[Votre adresse complète]',
+                  'Métropole Lilloise, France',
+                  'Email : benjpls@gmail.com',
+                ]
+              },
+              {
+                title: 'Hébergeur',
+                lines: [
+                  'o2switch',
+                  '222-224 Boulevard Gustave Flaubert',
+                  '63000 Clermont-Ferrand, France',
+                  'Tél : 04 44 44 60 60',
+                  'Site : www.o2switch.fr',
+                ]
+              },
+              {
+                title: 'Propriété intellectuelle',
+                lines: [
+                  "L'ensemble du contenu de ce site (textes, images, design) est la propriété exclusive de Benjamin Pelissier. Toute reproduction, même partielle, est interdite sans autorisation préalable.",
+                ]
+              },
+              {
+                title: 'Données personnelles',
+                lines: [
+                  "Les informations collectées via le formulaire de contact (nom, email, message) sont utilisées uniquement pour répondre à vos demandes. Elles ne sont ni cédées ni revendues à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression en contactant benjpls@gmail.com.",
+                ]
+              },
+            ].map(({ title, lines }) => (
+              <div key={title} style={{ marginBottom: 28 }}>
+                <h3 style={{ fontSize: 14, fontWeight: 600, color: c.accent, textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 10px' }}>{title}</h3>
+                {lines.map((line, i) => (
+                  <p key={i} style={{ fontSize: 14, color: c.textMuted, lineHeight: 1.7, margin: '0 0 2px' }}>{line}</p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* ── FOOTER ── */}
       <footer className="site-footer" style={{ padding: '32px 64px', borderTop: `1px solid ${c.border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: c.bg }}>
-        <div style={{ fontSize: 14, color: c.textMuted }}>© 2026 Benjamin Pelissier</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+          <div style={{ fontSize: 14, color: c.textMuted }}>© 2026 Benjamin Pelissier</div>
+          <button onClick={() => setLegalOpen(true)} style={{ background: 'none', border: 'none', fontSize: 13, color: c.textMuted, cursor: 'pointer', fontFamily: 'inherit', padding: 0, textDecoration: 'underline', textUnderlineOffset: 3, transition: 'color 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.color = c.accent}
+            onMouseLeave={e => e.currentTarget.style.color = c.textMuted}>
+            Mentions légales
+          </button>
+        </div>
         <div style={{ display: 'flex', gap: 24 }}>
           {[
             { href: 'https://github.com/BenjaminP17', label: 'GitHub', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> },
