@@ -30,6 +30,7 @@ function App() {
 
   const services = [
     { icon: '◻', title: 'Sites Vitrines', desc: 'Identité en ligne soignée, responsive, pensée pour convertir.' },
+    { icon: '◑', title: 'Modernisation', desc: 'Refonte de sites existants : design, performance et compatibilité moderne.' },
     { icon: '◈', title: 'E-commerce', desc: "Boutiques performantes avec expérience d'achat optimisée." },
     { icon: '◉', title: 'SEO & Performance', desc: 'Optimisation technique pour dominer les résultats de recherche.' },
     { icon: '◎', title: 'Maintenance', desc: 'Suivi, mises à jour et support réactif pour votre sérénité.' },

@@ -86,7 +86,7 @@ body { min-height: 100vh; font-family: 'DM Sans', 'Helvetica Neue', sans-serif; 
 
 .service-grid {
   display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
   gap: 24px !important;
 }
 
@@ -133,9 +133,7 @@ body { min-height: 100vh; font-family: 'DM Sans', 'Helvetica Neue', sans-serif; 
     grid-template-columns: 1fr !important;
     padding: 36px 24px !important;
   }
-  .service-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+
   .project-grid {
     grid-template-columns: 1fr !important;
   }
