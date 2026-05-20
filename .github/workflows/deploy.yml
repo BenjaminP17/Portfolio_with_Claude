@@ -48,6 +48,6 @@ jobs:
           username: ${{ secrets.FTP_LAB_USER }}
           password: ${{ secrets.FTP_LAB_PASSWORD }}
           local-dir: ./lab/
-          server-dir: /lab.benjaminpelissier.com/
+          server-dir: /
           state-name: .ftp-sync-state-lab.json
           dangerous-clean-slate: false
