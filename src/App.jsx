@@ -256,9 +256,16 @@ function App() {
       {/* ── PROJETS ── */}
       <section id="projects" className="section projects-section" style={{ padding: '96px 64px', background: c.bg }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ marginBottom: 64 }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: c.accent, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 16 }}>Projets</div>
-            <h2 className="section-title" style={{ fontWeight: 700, letterSpacing: '-1.5px', margin: 0, color: c.text }}>Réalisations récentes</h2>
+          <div style={{ marginBottom: 64, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: c.accent, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 16 }}>Projets</div>
+              <h2 className="section-title" style={{ fontWeight: 700, letterSpacing: '-1.5px', margin: 0, color: c.text }}>Réalisations récentes</h2>
+            </div>
+            <a href="/lab/index.html" style={{ fontSize: 14, fontWeight: 600, color: c.accent, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, padding: '8px 18px', borderRadius: 20, border: `1.5px solid ${c.border}`, background: dark ? 'rgba(138,180,248,0.06)' : 'rgba(26,115,232,0.04)', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = c.accent; e.currentTarget.style.background = dark ? 'rgba(138,180,248,0.14)' : 'rgba(26,115,232,0.1)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = c.border; e.currentTarget.style.background = dark ? 'rgba(138,180,248,0.06)' : 'rgba(26,115,232,0.04)'; }}>
+              Voir tout →
+            </a>
           </div>
           <div className="project-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 32 }}>
             {projects.map((p, i) => (

@@ -6,9 +6,8 @@ on:
       - main
 
 jobs:
-  deploy:
+  deploy-portfolio:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
@@ -17,7 +16,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Installation des dépendances
         run: npm ci
@@ -25,11 +24,30 @@ jobs:
       - name: Build Vite
         run: npm run build
 
-      - name: Déploiement via FTP
+      - name: Déploiement portfolio via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /
+          server-dir: /benjaminpelissier.com/
+          state-name: .ftp-sync-state-portfolio.json
+          dangerous-clean-slate: false
+
+  deploy-lab:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Déploiement lab via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_LAB_USER }}
+          password: ${{ secrets.FTP_LAB_PASSWORD }}
+          local-dir: ./lab/
+          server-dir: /lab.benjaminpelissier.com/
+          state-name: .ftp-sync-state-lab.json
+          dangerous-clean-slate: false
