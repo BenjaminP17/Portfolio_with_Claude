@@ -205,7 +205,7 @@ function App() {
                 Je transforme vos <span style={{ color: '#bfdbfe' }}>idées</span> en expériences numériques
               </h1>
               <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.75)', lineHeight: 1.65, margin: '0 0 36px' }}>
-                Développeur &amp; éditeur de sites web basé en France. Je conçois des sites et applications qui allient design soigné et performance technique.
+                Développeur &amp; éditeur de sites web basé à Lille, disponible en remote. Je conçois des sites et applications qui allient design soigné et performance technique.
               </p>
               <div className="hero-buttons" style={{ display: 'flex', gap: 14, alignItems: 'center', marginBottom: 44 }}>
                 <button onClick={() => scrollTo('projects')} style={{ background: '#fff', color: '#1a6cf5', border: 'none', padding: '13px 28px', borderRadius: 24, fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', boxShadow: '0 4px 20px rgba(0,0,0,0.2)', transition: 'all 0.2s' }}
@@ -242,7 +242,7 @@ function App() {
                 <div style={{ paddingLeft: 18 }}><span style={{ color: '#94b4f8' }}>surname</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>: </span><span style={{ color: '#86efac' }}>"Pelissier"</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>,</span></div>
                 <div style={{ paddingLeft: 18 }}><span style={{ color: '#94b4f8' }}>skills</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>: [</span><span style={{ color: '#86efac' }}>"Web Design"</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>, </span><span style={{ color: '#86efac' }}>"Web App"</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>, </span><span style={{ color: '#86efac' }}>"SEO"</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>],</span></div>
                 <div style={{ paddingLeft: 18 }}><span style={{ color: '#94b4f8' }}>mission</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>: </span><span style={{ color: '#86efac' }}>"Créer des sites et applications web"</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>,</span></div>
-                <div style={{ paddingLeft: 18 }}><span style={{ color: '#94b4f8' }}>location</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>: </span><span style={{ color: '#86efac' }}>"Remote"</span></div>
+                <div style={{ paddingLeft: 18 }}><span style={{ color: '#94b4f8' }}>location</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>: </span><span style={{ color: '#86efac' }}>"Lille &amp; Remote"</span></div>
                 <div><span style={{ color: 'rgba(255,255,255,0.4)' }}>{'};'}</span></div>
                 <div style={{ marginTop: 14 }}><span style={{ color: '#94b4f8' }}>creator</span><span style={{ color: 'rgba(255,255,255,0.4)' }}>.</span><span style={{ color: '#fbbf24' }}>buildAwesomeWebsite</span><span style={{ color: 'rgba(255,255,255,0.35)' }}>{'();'}</span></div>
                 <div style={{ marginTop: 2 }}><span style={{ display: 'inline-block', width: 9, height: 17, background: '#7c9cf5', verticalAlign: 'middle', animation: 'blink 1.1s step-end infinite' }}></span></div>
