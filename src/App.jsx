@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
 function App() {
@@ -29,11 +29,26 @@ function App() {
   };
 
   const services = [
-    { icon: '◻', title: 'Sites Vitrines', desc: 'Identité en ligne soignée, responsive, pensée pour convertir.' },
-    { icon: '◑', title: 'Modernisation', desc: 'Refonte de sites existants : design, performance et compatibilité moderne.' },
-    { icon: '◈', title: 'E-commerce', desc: "Boutiques performantes avec expérience d'achat optimisée." },
-    { icon: '◉', title: 'SEO & Performance', desc: 'Optimisation technique pour dominer les résultats de recherche.' },
-    { icon: '◎', title: 'Maintenance', desc: 'Suivi, mises à jour et support réactif pour votre sérénité.' },
+    {
+      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
+      title: 'Sites Vitrines', desc: 'Identité en ligne soignée, responsive, pensée pour convertir.'
+    },
+    {
+      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>,
+      title: 'Modernisation', desc: 'Refonte de sites existants : design, performance et compatibilité moderne.'
+    },
+    {
+      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>,
+      title: 'E-commerce', desc: "Boutiques performantes avec expérience d'achat optimisée."
+    },
+    {
+      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
+      title: 'SEO & Performance', desc: 'Optimisation technique pour dominer les résultats de recherche.'
+    },
+    {
+      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>,
+      title: 'Maintenance', desc: 'Suivi, mises à jour et support réactif pour votre sérénité.'
+    },
   ];
 
   const projects = [
@@ -51,6 +66,12 @@ function App() {
     { id: 'projects', label: 'Projets' },
     { id: 'contact', label: 'Contact' },
   ];
+
+  const servicesScrollRef = useRef(null);
+  const scrollServices = (dir) => {
+    const el = servicesScrollRef.current;
+    if (el) el.scrollBy({ left: dir * 324, behavior: 'smooth' });
+  };
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -199,7 +220,7 @@ function App() {
                 </button>
               </div>
               <div style={{ display: 'flex', paddingTop: 32, borderTop: '1px solid rgba(255,255,255,0.2)' }}>
-                {[['12+', 'Projets livrés'], ['5 ans', "D'expérience"], ['100%', 'Clients satisfaits']].map(([val, label], i) => (
+                {[['Sous 24h', 'Délai de réponse'], ['Révisions', 'Incluses'], ['Devis', 'Gratuit']].map(([val, label], i) => (
                   <div key={label} style={{ flex: 1, paddingRight: i < 2 ? 24 : 0, borderRight: i < 2 ? '1px solid rgba(255,255,255,0.15)' : 'none', paddingLeft: i > 0 ? 24 : 0 }}>
                     <div style={{ fontSize: 28, fontWeight: 700, color: '#fff', letterSpacing: '-1px' }}>{val}</div>
                     <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', marginTop: 3 }}>{label}</div>
@@ -239,16 +260,27 @@ function App() {
             <div style={{ fontSize: 13, fontWeight: 600, color: c.accent, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 16 }}>Services</div>
             <h2 className="section-title" style={{ fontWeight: 700, letterSpacing: '-1.5px', margin: 0, color: c.text }}>Ce que je fais</h2>
           </div>
-          <div className="service-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
-            {services.map((s, i) => (
-              <div key={i} style={{ background: c.bgCard, borderRadius: 16, padding: 32, border: `1px solid ${c.border}`, transition: 'all 0.25s', cursor: 'default' }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = dark ? '0 12px 32px rgba(0,0,0,0.4)' : '0 12px 32px rgba(26,115,232,0.12)'; e.currentTarget.style.borderColor = c.accent; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = c.border; }}>
-                <div style={{ width: 48, height: 48, borderRadius: 12, background: dark ? 'rgba(138,180,248,0.12)' : 'rgba(26,115,232,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24, fontSize: 22, color: c.accent }}>{s.icon}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 600, margin: '0 0 12px', color: c.text }}>{s.title}</h3>
-                <p style={{ fontSize: 14, color: c.textMuted, lineHeight: 1.6, margin: 0 }}>{s.desc}</p>
-              </div>
-            ))}
+          <style>{`.services-scroll::-webkit-scrollbar{display:none}`}</style>
+          <div style={{ position: 'relative' }}>
+            <button onClick={() => scrollServices(-1)} aria-label="Précédent" style={{ position: 'absolute', left: -20, top: '50%', transform: 'translateY(-50%)', zIndex: 2, width: 40, height: 40, borderRadius: '50%', border: `1.5px solid ${c.border}`, background: c.bgCard, color: c.accent, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', transition: 'all 0.2s', fontFamily: 'inherit' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = c.accent; e.currentTarget.style.boxShadow = '0 6px 16px rgba(26,115,232,0.2)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = c.border; e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)'; }}>‹</button>
+
+            <div ref={servicesScrollRef} className="services-scroll" style={{ display: 'flex', gap: 24, overflowX: 'auto', scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none', padding: '4px 0 8px' }}>
+              {services.map((s, i) => (
+                <div key={i} style={{ flex: '0 0 300px', scrollSnapAlign: 'start', background: c.bgCard, borderRadius: 16, padding: 32, border: `1px solid ${c.border}`, transition: 'all 0.25s', cursor: 'default' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = dark ? '0 12px 32px rgba(0,0,0,0.4)' : '0 12px 32px rgba(26,115,232,0.12)'; e.currentTarget.style.borderColor = c.accent; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = c.border; }}>
+                  <div style={{ width: 48, height: 48, borderRadius: 12, background: dark ? 'rgba(138,180,248,0.12)' : 'rgba(26,115,232,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24, color: c.accent }}>{s.icon}</div>
+                  <h3 style={{ fontSize: 18, fontWeight: 600, margin: '0 0 12px', color: c.text }}>{s.title}</h3>
+                  <p style={{ fontSize: 14, color: c.textMuted, lineHeight: 1.6, margin: 0 }}>{s.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <button onClick={() => scrollServices(1)} aria-label="Suivant" style={{ position: 'absolute', right: -20, top: '50%', transform: 'translateY(-50%)', zIndex: 2, width: 40, height: 40, borderRadius: '50%', border: `1.5px solid ${c.border}`, background: c.bgCard, color: c.accent, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', transition: 'all 0.2s', fontFamily: 'inherit' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = c.accent; e.currentTarget.style.boxShadow = '0 6px 16px rgba(26,115,232,0.2)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = c.border; e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)'; }}>›</button>
           </div>
         </div>
       </section>
@@ -347,7 +379,7 @@ function App() {
                 ))}
                 <div>
                   <label style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.8)', display: 'block', marginBottom: 8 }}>Votre message</label>
-                  <textarea required placeholder="Décrivez votre projet..." rows={5} value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))}
+                  <textarea required placeholder={"Décrivez votre projet :\n— Type : site vitrine, e-commerce, refonte...\n— Budget approximatif\n— Délai souhaité"} rows={5} value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))}
                     style={{ width: '100%', padding: '13px 16px', borderRadius: 12, border: '1.5px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.1)', color: '#fff', fontSize: 15, fontFamily: 'inherit', outline: 'none', resize: 'vertical', boxSizing: 'border-box', transition: 'border-color 0.2s' }}
                     onFocus={e => { e.target.style.borderColor = 'rgba(255,255,255,0.6)'; e.target.style.background = 'rgba(255,255,255,0.15)'; }}
                     onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.2)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }}
